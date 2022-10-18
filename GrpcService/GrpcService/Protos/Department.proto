@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option csharp_namespace = "ServiceTest.Protos";
+
+
+service DepartmentsServices
+{
+	rpc GetAllDepartment(EmptyDpm) returns(Departments);
+	rpc GetDepartmentById(DepartmentId) returns(Department);
+	rpc DeleteDepartment(DepartmentId) returns(EmptyDpm);
+	rpc CreateDepartment(Department) returns(Department);
+	rpc UpdateDepartment(Department) returns(Department);
+
+}
+
+message EmptyDpm
+{
+}
+
+message Department{
+	int32 department_id=1;
+	string department_name=2;
+}
+message DepartmentId{
+	int32 department_id=1;
+}
+
+message Departments{
+	repeated Department items=1;
+}

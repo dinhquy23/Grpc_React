@@ -1,0 +1,35 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "ServiceTest.Protos";
+
+service EmployeesServices{
+
+	rpc GetAll(Empty) returns(Employees);
+	rpc GetById(EmployeeId) returns(Employee);
+	rpc Delete(EmployeeId) returns(Empty);
+	rpc Update(Employee) returns(Employee);
+	rpc Create(Employee) returns(Employee);
+}
+
+message Empty {}
+
+message Employee
+{
+	int32 employee_id=1;
+	int32 department_id=2;
+	string employee_name=3;
+	int32 employee_age=4;
+	google.protobuf.Timestamp date_of_birth =5;
+	double salary=6;
+}
+
+message EmployeeId
+{
+	int32 employee_id=1;
+}
+
+message Employees
+{
+	repeated Employee items=1;
+}
